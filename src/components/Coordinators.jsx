@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { RiWhatsappLine, RiPhoneLine } from "react-icons/ri";
 
 export default function Coordinators() {
-  // ✅ Each person has their own WhatsApp + Call
   const staffCoordinators = [
     {
       name: "AMSAMANI E",
@@ -36,14 +35,14 @@ export default function Coordinators() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
       {/* ================= CONTENT ================= */}
-      <div className="relative z-10 py-28 px-4 sm:px-6">
-        {/* ✅ TITLE (Gradient Motion) */}
+      <div className="relative z-10 py-20 sm:py-28 px-3 sm:px-6">
+        {/* ✅ TITLE */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center text-4xl sm:text-5xl font-extrabold tracking-wide"
+          className="text-center text-3xl sm:text-5xl font-extrabold tracking-wide"
         >
           <motion.span
             className="
@@ -63,43 +62,47 @@ export default function Coordinators() {
         {/* ✅ UNDERLINE BAR */}
         <motion.div
           className="
-            mx-auto mt-3 h-[4px] w-60 rounded-full
+            mx-auto mt-3 h-[3px] sm:h-[4px]
+            w-44 sm:w-60
+            rounded-full
             bg-gradient-to-r from-fuchsia-400 via-purple-500 to-pink-400
             bg-[length:300%_300%]
             shadow-[0_0_18px_rgba(217,70,239,0.35)]
-            mb-16
+            mb-12 sm:mb-16
           "
           animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         />
 
         {/* ✅ COORDINATOR CARDS */}
-        <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-          {/* ================= STAFF COORDINATOR ================= */}
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-10 max-w-5xl mx-auto">
+          {/* ================= STAFF ================= */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="
-              relative bg-black/40 backdrop-blur-2xl
-              border border-white/10 rounded-3xl
-              p-9 text-center
+              relative
+              bg-black/40
+              backdrop-blur-2xl
+              border border-white/10
+              rounded-3xl
+              p-5 sm:p-9
+              text-center
               shadow-[0_25px_60px_rgba(0,0,0,0.65)]
               overflow-hidden
             "
           >
-            {/* ✅ Card Top Strip */}
-            <div className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-cyan-400 via-blue-500 to-sky-400" />
+            <div className="absolute top-0 left-0 w-full h-[4px] sm:h-[5px] bg-gradient-to-r from-cyan-400 via-blue-500 to-sky-400" />
 
-            <h3 className="text-2xl font-extrabold mb-6">
+            <h3 className="text-xl sm:text-2xl font-extrabold mb-5 sm:mb-6">
               <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-sky-300 bg-clip-text text-transparent">
                 Staff Coordinators
               </span>
             </h3>
 
-            {/* ✅ Staff List */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {staffCoordinators.map((person, index) => (
                 <motion.div
                   key={index}
@@ -109,26 +112,29 @@ export default function Coordinators() {
                   viewport={{ once: true }}
                   className="
                     flex items-center justify-between
-                    bg-white/5 border border-white/10
-                    rounded-2xl px-5 py-4
+                    bg-white/5
+                    border border-white/10
+                    rounded-2xl
+                    px-3 sm:px-5
+                    py-3 sm:py-4
                     backdrop-blur-md
                     transition-all duration-300
                     hover:bg-white/10 hover:scale-[1.02]
                     hover:border-cyan-400/30
                   "
                 >
-                  {/* ✅ ONLY NAME TEXT (NO EXTRA CONTAINER LOOK) */}
-                  <div className="text-left flex-1 min-w-0">
-                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                  {/* ✅ TEXT ONLY (Max space for name) */}
+                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4">
+                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis">
                       {person.name}
                     </p>
-                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
                       {person.role}
                     </p>
                   </div>
 
-                  {/* ✅ Icons (smaller only in mobile) */}
-                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                  {/* ✅ MOBILE SMALL ICONS */}
+                  <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                     <a
                       href={person.whatsapp}
                       target="_blank"
@@ -142,7 +148,7 @@ export default function Coordinators() {
                       "
                       title="WhatsApp"
                     >
-                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                      <RiWhatsappLine className="text-lg sm:text-2xl text-green-400" />
                     </a>
 
                     <a
@@ -156,7 +162,7 @@ export default function Coordinators() {
                       "
                       title="Call"
                     >
-                      <RiPhoneLine className="text-xl sm:text-2xl text-cyan-300" />
+                      <RiPhoneLine className="text-lg sm:text-2xl text-cyan-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -164,31 +170,33 @@ export default function Coordinators() {
             </div>
           </motion.div>
 
-          {/* ================= STUDENT COORDINATOR ================= */}
+          {/* ================= STUDENTS ================= */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="
-              relative bg-black/40 backdrop-blur-2xl
-              border border-white/10 rounded-3xl
-              p-9 text-center
+              relative
+              bg-black/40
+              backdrop-blur-2xl
+              border border-white/10
+              rounded-3xl
+              p-5 sm:p-9
+              text-center
               shadow-[0_25px_60px_rgba(0,0,0,0.65)]
               overflow-hidden
             "
           >
-            {/* ✅ Card Top Strip */}
-            <div className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-fuchsia-400 via-purple-500 to-pink-400" />
+            <div className="absolute top-0 left-0 w-full h-[4px] sm:h-[5px] bg-gradient-to-r from-fuchsia-400 via-purple-500 to-pink-400" />
 
-            <h3 className="text-2xl font-extrabold mb-6">
+            <h3 className="text-xl sm:text-2xl font-extrabold mb-5 sm:mb-6">
               <span className="bg-gradient-to-r from-fuchsia-300 via-purple-400 to-pink-300 bg-clip-text text-transparent">
                 Student Coordinators
               </span>
             </h3>
 
-            {/* ✅ Student List */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {studentCoordinators.map((person, index) => (
                 <motion.div
                   key={index}
@@ -198,26 +206,29 @@ export default function Coordinators() {
                   viewport={{ once: true }}
                   className="
                     flex items-center justify-between
-                    bg-white/5 border border-white/10
-                    rounded-2xl px-5 py-4
+                    bg-white/5
+                    border border-white/10
+                    rounded-2xl
+                    px-3 sm:px-5
+                    py-3 sm:py-4
                     backdrop-blur-md
                     transition-all duration-300
                     hover:bg-white/10 hover:scale-[1.02]
                     hover:border-fuchsia-400/30
                   "
                 >
-                  {/* ✅ ONLY NAME TEXT (NO EXTRA CONTAINER LOOK) */}
-                  <div className="text-left flex-1 min-w-0">
-                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                  {/* ✅ TEXT ONLY (Max space for name) */}
+                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4">
+                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis">
                       {person.name}
                     </p>
-                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
                       {person.year}
                     </p>
                   </div>
 
-                  {/* ✅ Icons (smaller only in mobile) */}
-                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                  {/* ✅ MOBILE SMALL ICONS */}
+                  <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                     <a
                       href={person.whatsapp}
                       target="_blank"
@@ -231,7 +242,7 @@ export default function Coordinators() {
                       "
                       title="WhatsApp"
                     >
-                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                      <RiWhatsappLine className="text-lg sm:text-2xl text-green-400" />
                     </a>
 
                     <a
@@ -245,7 +256,7 @@ export default function Coordinators() {
                       "
                       title="Call"
                     >
-                      <RiPhoneLine className="text-xl sm:text-2xl text-fuchsia-300" />
+                      <RiPhoneLine className="text-lg sm:text-2xl text-fuchsia-300" />
                     </a>
                   </div>
                 </motion.div>
