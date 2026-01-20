@@ -1,3 +1,5 @@
+// src/pages/Events.jsx ✅ FULL ONE FILE ✅ Forward + Reverse Auto Scroll ✅
+
 import { events } from "../data/events";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
@@ -59,7 +61,6 @@ function TypingTextOnView({ text = "", className = "", start = false, speed }) {
 
 /* ✅ Event Card */
 function EventCard({ e, onOpen, typingSpeed }) {
-  // ✅ USE STATIC ACCENT KEY
   const accent = GRADIENTS[e.accentKey] || GRADIENTS.default;
 
   const ref = useRef(null);
@@ -71,7 +72,7 @@ function EventCard({ e, onOpen, typingSpeed }) {
       whileHover={{ scale: 1.04 }}
       className="snap-center min-w-[90%] md:min-w-0 relative rounded-2xl overflow-hidden
                  flex flex-col sm:flex-row border border-white/20
-                 shadow-[0_0_40px_rgba(0,255,255,0.15)] min-h-[340px]"
+                 shadow-[0_0_40px_rgba(0,255,255,0.15)] min-h-[300px]"
     >
       {/* ✅ GLOW */}
       <motion.div
@@ -81,7 +82,7 @@ function EventCard({ e, onOpen, typingSpeed }) {
       />
 
       {/* LEFT */}
-      <div className="relative z-10 p-8 w-full sm:w-[60%] flex flex-col justify-center text-center">
+      <div className="relative z-10 p-6 w-full sm:w-[60%] flex flex-col justify-center text-center">
         <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-widest">
           {e.title}
         </h3>
@@ -113,7 +114,7 @@ function EventCard({ e, onOpen, typingSpeed }) {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="relative w-full sm:w-[40%] h-[180px] sm:h-auto">
+      <div className="relative w-full sm:w-[40%] h-[150px] sm:h-auto">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${e.bg})` }}
@@ -151,14 +152,35 @@ export default function Events() {
 
   const typingSpeed = isMobile ? 10 : 22;
 
+  /* ✅ AUTO SCROLL MOBILE ONLY (FORWARD ✅ then REVERSE ✅) */
   useEffect(() => {
     if (!carouselRef.current || window.innerWidth >= 768) return;
+
+    const container = carouselRef.current;
+    const totalCards = events.length;
+
+    let currentIndex = 0;
+    let direction = 1; // ✅ 1 = forward, -1 = reverse
+
     autoScrollRef.current = setInterval(() => {
-      carouselRef.current.scrollBy({
-        left: carouselRef.current.offsetWidth,
+      currentIndex += direction;
+
+      // ✅ If reached end → reverse
+      if (currentIndex >= totalCards - 1) {
+        direction = -1;
+      }
+
+      // ✅ If reached start → forward
+      if (currentIndex <= 0) {
+        direction = 1;
+      }
+
+      container.scrollTo({
+        left: container.offsetWidth * currentIndex,
         behavior: "smooth",
       });
     }, 3500);
+
     return () => clearInterval(autoScrollRef.current);
   }, []);
 
@@ -167,7 +189,6 @@ export default function Events() {
     window.open(link, "_blank", "noopener,noreferrer");
   };
 
-  // ✅ modal accent also using accentKey
   const modalAccent =
     selectedEvent?.accentKey && GRADIENTS[selectedEvent.accentKey]
       ? GRADIENTS[selectedEvent.accentKey]
@@ -175,9 +196,11 @@ export default function Events() {
 
   return (
     <section id="event" className="min-h-screen py-24 px-4">
-      <h2 className="text-center mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest
-                     bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500
-                     bg-clip-text text-transparent">
+      <h2
+        className="text-center mt-6 mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest
+             bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500
+             bg-clip-text text-transparent"
+      >
         COMPETITIONS
       </h2>
 
@@ -205,15 +228,17 @@ export default function Events() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedEvent(null)}
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center px-4"
+            className="fixed inset-0 z-50 bg-black/80 flex items-end justify-center px-4 pt-16 pb-6"
           >
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-black/70 backdrop-blur-xl p-6 rounded-2xl
-                         max-w-2xl w-full border border-white/20 text-white relative"
+              className="bg-black/70 backdrop-blur-xl p-4 sm:p-6 rounded-2xl
+           max-w-[89vw] sm:max-w-2xl w-full
+           border border-white/20 text-white relative
+           max-h-[80vh] overflow-y-auto"
             >
               <button
                 onClick={() => setSelectedEvent(null)}
@@ -247,26 +272,25 @@ export default function Events() {
                 <Detail label="Prize" value={selectedEvent.prizePool} />
               </div>
 
-              <p className="text-center mb-6">
-                <span className="text-xs uppercase opacity-70">Venue</span>
-                <br />
-                <span className="font-semibold">{selectedEvent.venue}</span>
-              </p>
+              {/* ✅ VENUE LEFT + REGISTER BUTTON RIGHT ✅ */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+                {/* Venue */}
+                <p className="text-center sm:text-left">
+                  <span className="text-xs uppercase opacity-70">Venue</span>
+                  <br />
+                  <span className="font-semibold">{selectedEvent.venue}</span>
+                </p>
 
-              <button
-                onClick={handleRegister}
-                className={`w-full py-3 rounded-full bg-gradient-to-r ${modalAccent}
-                            text-white font-extrabold tracking-widest hover:scale-[1.03] transition`}
-              >
-                Register Now →
-              </button>
-
-              <button
-                onClick={() => setSelectedEvent(null)}
-                className="mt-3 w-full py-2.5 rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                Close
-              </button>
+                {/* Register Button (Right Side) */}
+                <button
+                  onClick={handleRegister}
+                  className={`px-7 py-2.5 rounded-full bg-gradient-to-r ${modalAccent}
+                              text-white font-extrabold tracking-widest
+                              hover:scale-[1.06] transition whitespace-nowrap`}
+                >
+                  Register Now →
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}
