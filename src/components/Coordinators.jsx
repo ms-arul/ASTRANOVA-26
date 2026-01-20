@@ -1,103 +1,275 @@
 import { motion } from "framer-motion";
+import { RiWhatsappLine, RiPhoneLine } from "react-icons/ri";
 
 export default function Coordinators() {
+  // ✅ Each person has their own WhatsApp + Call
+  const staffCoordinators = [
+    {
+      name: "AMSAMANI E",
+      role: "Assistant Professor",
+      whatsapp: "https://wa.me/919940194947",
+      call: "tel:+919940194947",
+    },
+    {
+      name: "PAUL T JABA",
+      role: "Assistant Professor",
+      whatsapp: "https://wa.me/919498023736",
+      call: "tel:+919498023736",
+    },
+  ];
+
+  const studentCoordinators = [
+    {
+      name: "J GAVIN JOES",
+      year: "3rd Year – B.E (CSE)",
+      whatsapp: "https://wa.me/917448423003",
+      call: "tel:+917448423003",
+    },
+    {
+      name: "J SOMUSEKHAR",
+      year: "3rd Year – B.E (CSE)",
+      whatsapp: "https://wa.me/916381268654",
+      call: "tel:+916381268654",
+    },
+  ];
+
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      
-      {/* ================= BACKGROUND VIDEO ================= */}
-     
-
       {/* ================= CONTENT ================= */}
       <div className="relative z-10 py-28 px-4 sm:px-6">
-        
-        {/* TITLE */}
+        {/* ✅ TITLE (Gradient Motion) */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="
-            text-center
-            text-3xl sm:text-4xl
-            font-extrabold
-            tracking-wide
-            text-cyan-400
-            mb-16
-          "
+          className="text-center text-4xl sm:text-5xl font-extrabold tracking-wide"
         >
-          Coordinators
+          <motion.span
+            className="
+              inline-block
+              bg-gradient-to-r from-cyan-300 via-blue-400 to-fuchsia-400
+              bg-[length:300%_300%]
+              bg-clip-text text-transparent
+              drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]
+            "
+            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Coordinators
+          </motion.span>
         </motion.h2>
 
-        {/* COORDINATOR CARDS */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          
-          {/* STAFF COORDINATOR */}
+        {/* ✅ UNDERLINE BAR (perfect line under title) */}
+        <motion.div
+          className="
+            mx-auto
+            mt-3
+            h-[4px]
+            w-60
+            rounded-full
+            bg-gradient-to-r from-fuchsia-400 via-purple-500 to-pink-400
+            bg-[length:300%_300%]
+            shadow-[0_0_18px_rgba(217,70,239,0.35)]
+            mb-16
+          "
+          animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* ✅ COORDINATOR CARDS */}
+        <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          {/* ================= STAFF COORDINATOR ================= */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="
-              bg-black/45
-              backdrop-blur-xl
-              border border-white/15
-              rounded-2xl
-              p-8
+              relative
+              bg-black/40
+              backdrop-blur-2xl
+              border border-white/10
+              rounded-3xl
+              p-9
               text-center
-              shadow-[0_20px_50px_rgba(0,0,0,0.6)]
+              shadow-[0_25px_60px_rgba(0,0,0,0.65)]
+              overflow-hidden
             "
           >
-            <h3 className="text-xl font-bold tracking-wide text-white mb-3">
-              Staff Coordinator
+            {/* ✅ Card Top Color Strip */}
+            <div className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-cyan-400 via-blue-500 to-sky-400" />
+
+            <h3 className="text-2xl font-extrabold mb-6">
+              <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-sky-300 bg-clip-text text-transparent">
+                Staff Coordinators
+              </span>
             </h3>
 
-            <p className="text-gray-200 font-medium">
-              AMSAMANI E
-            </p>
-            <p className="text-gray-200 font-medium">
-              PAUL T JABA
-            </p>
+            {/* ✅ Staff List */}
+            <div className="space-y-4">
+              {staffCoordinators.map((person, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="
+                    flex items-center justify-between
+                    bg-white/5
+                    border border-white/10
+                    rounded-2xl
+                    px-5 py-4
+                    backdrop-blur-md
+                    transition-all duration-300
+                    hover:bg-white/10
+                    hover:scale-[1.02]
+                    hover:border-cyan-400/30
+                  "
+                >
+                  {/* ✅ Name (Wider container + single line) */}
+                  <div className="text-left flex-1 min-w-0 pr-4">
+                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                      {person.name}
+                    </p>
+                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                      {person.year || person.role}
+                    </p>
+                  </div>
 
-            <p className="mt-3 text-sm tracking-wide text-gray-400 uppercase">
-              Assistant Professor
-            </p>
+                  {/* ✅ Right Side Icons (✅ Smaller ONLY on mobile) */}
+                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <a
+                      href={person.whatsapp}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                        p-2 sm:p-3 rounded-xl
+                        bg-green-500/10 border border-green-400/30
+                        hover:bg-green-500/20 hover:scale-110
+                        transition-all duration-300
+                        shadow-[0_0_15px_rgba(34,197,94,0.25)]
+                      "
+                      title="WhatsApp"
+                    >
+                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                    </a>
+
+                    <a
+                      href={person.call}
+                      className="
+                        p-2 sm:p-3 rounded-xl
+                        bg-cyan-500/10 border border-cyan-400/30
+                        hover:bg-cyan-500/20 hover:scale-110
+                        transition-all duration-300
+                        shadow-[0_0_15px_rgba(34,211,238,0.25)]
+                      "
+                      title="Call"
+                    >
+                      <RiPhoneLine className="text-xl sm:text-2xl text-cyan-300" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
-          {/* STUDENT COORDINATOR */}
+          {/* ================= STUDENT COORDINATOR ================= */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="
-              bg-black/45
-              backdrop-blur-xl
-              border border-white/15
-              rounded-2xl
-              p-8
+              relative
+              bg-black/40
+              backdrop-blur-2xl
+              border border-white/10
+              rounded-3xl
+              p-9
               text-center
-              shadow-[0_20px_50px_rgba(0,0,0,0.6)]
+              shadow-[0_25px_60px_rgba(0,0,0,0.65)]
+              overflow-hidden
             "
           >
-            <h3 className="text-xl font-bold tracking-wide text-white mb-3">
-              Student Coordinators
+            {/* ✅ Card Top Color Strip */}
+            <div className="absolute top-0 left-0 w-full h-[5px] bg-gradient-to-r from-fuchsia-400 via-purple-500 to-pink-400" />
+
+            <h3 className="text-2xl font-extrabold mb-6">
+              <span className="bg-gradient-to-r from-fuchsia-300 via-purple-400 to-pink-300 bg-clip-text text-transparent">
+                Student Coordinators
+              </span>
             </h3>
 
-            <p className="text-gray-200 font-medium">
-              J GAVIN JOES
-            </p>
-            <p className="text-sm text-gray-400 mb-2">
-              3rd Year – B.E (CSE)
-            </p>
+            {/* ✅ Student List */}
+            <div className="space-y-4">
+              {studentCoordinators.map((person, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="
+                    flex items-center justify-between
+                    bg-white/5
+                    border border-white/10
+                    rounded-2xl
+                    px-5 py-4
+                    backdrop-blur-md
+                    transition-all duration-300
+                    hover:bg-white/10
+                    hover:scale-[1.02]
+                    hover:border-fuchsia-400/30
+                  "
+                >
+                  {/* ✅ Name (More space + truncate on mobile) */}
+                  <div className="text-left flex-1 min-w-0 pr-4">
+                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                      {person.name}
+                    </p>
+                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                      {person.year}
+                    </p>
+                  </div>
 
-            <p className="text-gray-200 font-medium">
-              J SOMUSEKHAR
-            </p>
-            <p className="text-sm text-gray-400">
-              3rd Year – B.E (CSE)
-            </p>
+                  {/* ✅ Right Side Icons (✅ Smaller ONLY on mobile) */}
+                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <a
+                      href={person.whatsapp}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+                        p-2 sm:p-3 rounded-xl
+                        bg-green-500/10 border border-green-400/30
+                        hover:bg-green-500/20 hover:scale-110
+                        transition-all duration-300
+                        shadow-[0_0_15px_rgba(34,197,94,0.25)]
+                      "
+                      title="WhatsApp"
+                    >
+                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                    </a>
+
+                    <a
+                      href={person.call}
+                      className="
+                        p-2 sm:p-3 rounded-xl
+                        bg-fuchsia-500/10 border border-fuchsia-400/30
+                        hover:bg-fuchsia-500/20 hover:scale-110
+                        transition-all duration-300
+                        shadow-[0_0_16px_rgba(217,70,239,0.25)]
+                      "
+                      title="Call"
+                    >
+                      <RiPhoneLine className="text-xl sm:text-2xl text-fuchsia-300" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
-
         </div>
       </div>
     </section>
