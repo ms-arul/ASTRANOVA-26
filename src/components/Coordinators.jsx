@@ -128,24 +128,25 @@ export default function Coordinators() {
                     hover:border-cyan-400/30
                   "
                 >
-                  {/* ✅ Name (Wider container + single line) */}
-                  <div className="text-left flex-1 min-w-0 pr-4">
-                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
-                      {person.name}
-                    </p>
-                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
-                      {person.year || person.role}
-                    </p>
-                  </div>
+                 {/* ✅ Name (Wider container + single line) */}
+<div className="text-left flex-1 min-w-0 pr-4">
+  <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+    {person.name}
+  </p>
+  <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+    {person.year || person.role}
+  </p>
+</div>
 
-                  {/* ✅ Right Side Icons (✅ Smaller ONLY on mobile) */}
-                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+
+                  {/* ✅ Right Side Icons */}
+                  <div className="flex items-center gap-3">
                     <a
                       href={person.whatsapp}
                       target="_blank"
                       rel="noreferrer"
                       className="
-                        p-2 sm:p-3 rounded-xl
+                        p-3 rounded-xl
                         bg-green-500/10 border border-green-400/30
                         hover:bg-green-500/20 hover:scale-110
                         transition-all duration-300
@@ -153,13 +154,13 @@ export default function Coordinators() {
                       "
                       title="WhatsApp"
                     >
-                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                      <RiWhatsappLine className="text-2xl text-green-400" />
                     </a>
 
                     <a
                       href={person.call}
                       className="
-                        p-2 sm:p-3 rounded-xl
+                        p-3 rounded-xl
                         bg-cyan-500/10 border border-cyan-400/30
                         hover:bg-cyan-500/20 hover:scale-110
                         transition-all duration-300
@@ -167,7 +168,7 @@ export default function Coordinators() {
                       "
                       title="Call"
                     >
-                      <RiPhoneLine className="text-xl sm:text-2xl text-cyan-300" />
+                      <RiPhoneLine className="text-2xl text-cyan-300" />
                     </a>
                   </div>
                 </motion.div>
@@ -224,24 +225,24 @@ export default function Coordinators() {
                     hover:border-fuchsia-400/30
                   "
                 >
-                  {/* ✅ Name (More space + truncate on mobile) */}
-                  <div className="text-left flex-1 min-w-0 pr-4">
-                    <p className="text-white font-bold tracking-wide text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                  {/* Name */}
+                  <div className="text-left">
+                    <p className="text-white font-bold tracking-wide text-lg">
                       {person.name}
                     </p>
-                    <p className="text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-xs text-fuchsia-200/70 mt-1">
                       {person.year}
                     </p>
                   </div>
 
-                  {/* ✅ Right Side Icons (✅ Smaller ONLY on mobile) */}
-                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                  {/* ✅ Right Side Icons */}
+                  <div className="flex items-center gap-3">
                     <a
                       href={person.whatsapp}
                       target="_blank"
                       rel="noreferrer"
                       className="
-                        p-2 sm:p-3 rounded-xl
+                        p-3 rounded-xl
                         bg-green-500/10 border border-green-400/30
                         hover:bg-green-500/20 hover:scale-110
                         transition-all duration-300
@@ -249,13 +250,13 @@ export default function Coordinators() {
                       "
                       title="WhatsApp"
                     >
-                      <RiWhatsappLine className="text-xl sm:text-2xl text-green-400" />
+                      <RiWhatsappLine className="text-2xl text-green-400" />
                     </a>
 
                     <a
                       href={person.call}
                       className="
-                        p-2 sm:p-3 rounded-xl
+                        p-3 rounded-xl
                         bg-fuchsia-500/10 border border-fuchsia-400/30
                         hover:bg-fuchsia-500/20 hover:scale-110
                         transition-all duration-300
@@ -263,7 +264,7 @@ export default function Coordinators() {
                       "
                       title="Call"
                     >
-                      <RiPhoneLine className="text-xl sm:text-2xl text-fuchsia-300" />
+                      <RiPhoneLine className="text-2xl text-fuchsia-300" />
                     </a>
                   </div>
                 </motion.div>
