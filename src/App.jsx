@@ -1,6 +1,8 @@
 import React from "react";
 
 import StarNetwork from "./components/StarNetwork";
+import GlobalOverlay from "./components/GlobalOverlay";
+
 import CollegeHeader from "./components/CollegeHeader";
 import Hero from "./components/Hero";
 import Events from "./components/Events";
@@ -17,16 +19,9 @@ export default function App() {
         <StarNetwork />
       </div>
 
-      {/* ✅ Layer 1: Global Overlay + Vignette + Grain */}
+      {/* ✅ Layer 1: Global Overlay (Light, Not Dark ✅) */}
       <div className="fixed inset-0 z-[1] pointer-events-none">
-        {/* Global dark gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/75" />
-
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.70)_80%)]" />
-
-        {/* Optional Premium Grain */}
-        <div className="absolute inset-0 opacity-[0.10] mix-blend-overlay bg-[url('/noise.png')]" />
+        <GlobalOverlay />
       </div>
 
       {/* ✅ Layer 2: Header */}
