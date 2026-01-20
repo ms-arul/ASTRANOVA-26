@@ -74,7 +74,7 @@ export default function Coordinators() {
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* ✅ COORDINATOR CARDS */}
+        {/* ✅ CARDS */}
         <div className="grid md:grid-cols-2 gap-6 sm:gap-10 max-w-5xl mx-auto">
           {/* ================= STAFF ================= */}
           <motion.div
@@ -83,13 +83,9 @@ export default function Coordinators() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="
-              relative
-              bg-black/40
-              backdrop-blur-2xl
-              border border-white/10
-              rounded-3xl
-              p-5 sm:p-9
-              text-center
+              relative bg-black/40 backdrop-blur-2xl
+              border border-white/10 rounded-3xl
+              p-5 sm:p-9 text-center
               shadow-[0_25px_60px_rgba(0,0,0,0.65)]
               overflow-hidden
             "
@@ -112,28 +108,25 @@ export default function Coordinators() {
                   viewport={{ once: true }}
                   className="
                     flex items-center justify-between
-                    bg-white/5
-                    border border-white/10
-                    rounded-2xl
-                    px-3 sm:px-5
-                    py-3 sm:py-4
+                    bg-white/5 border border-white/10
+                    rounded-2xl px-3 sm:px-5 py-3 sm:py-4
                     backdrop-blur-md
                     transition-all duration-300
                     hover:bg-white/10 hover:scale-[1.02]
                     hover:border-cyan-400/30
                   "
                 >
-                  {/* ✅ TEXT ONLY (Max space for name) */}
-                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4">
-                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                  {/* ✅ NO ... + NO NEXT LINE */}
+                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4 overflow-hidden">
+                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden">
                       {person.name}
                     </p>
-                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden">
                       {person.role}
                     </p>
                   </div>
 
-                  {/* ✅ MOBILE SMALL ICONS */}
+                  {/* ✅ ICONS (Mobile small) */}
                   <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                     <a
                       href={person.whatsapp}
@@ -177,13 +170,9 @@ export default function Coordinators() {
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             className="
-              relative
-              bg-black/40
-              backdrop-blur-2xl
-              border border-white/10
-              rounded-3xl
-              p-5 sm:p-9
-              text-center
+              relative bg-black/40 backdrop-blur-2xl
+              border border-white/10 rounded-3xl
+              p-5 sm:p-9 text-center
               shadow-[0_25px_60px_rgba(0,0,0,0.65)]
               overflow-hidden
             "
@@ -206,28 +195,25 @@ export default function Coordinators() {
                   viewport={{ once: true }}
                   className="
                     flex items-center justify-between
-                    bg-white/5
-                    border border-white/10
-                    rounded-2xl
-                    px-3 sm:px-5
-                    py-3 sm:py-4
+                    bg-white/5 border border-white/10
+                    rounded-2xl px-3 sm:px-5 py-3 sm:py-4
                     backdrop-blur-md
                     transition-all duration-300
                     hover:bg-white/10 hover:scale-[1.02]
                     hover:border-fuchsia-400/30
                   "
                 >
-                  {/* ✅ TEXT ONLY (Max space for name) */}
-                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4">
-                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden text-ellipsis">
+                  {/* ✅ NO ... + NO NEXT LINE */}
+                  <div className="text-left flex-1 min-w-0 pr-2 sm:pr-4 overflow-hidden">
+                    <p className="text-white font-bold tracking-wide text-base sm:text-lg whitespace-nowrap overflow-hidden">
                       {person.name}
                     </p>
-                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="text-[11px] sm:text-xs text-fuchsia-200/70 mt-1 whitespace-nowrap overflow-hidden">
                       {person.year}
                     </p>
                   </div>
 
-                  {/* ✅ MOBILE SMALL ICONS */}
+                  {/* ✅ ICONS (Mobile small) */}
                   <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                     <a
                       href={person.whatsapp}
