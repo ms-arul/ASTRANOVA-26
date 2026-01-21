@@ -11,7 +11,6 @@ const Hero = () => {
 
   return (
     <section className="heroMobile">
-      {/* ✅ Layout (No backgrounds now) */}
       <div className="heroWrap">
         {/* ✅ TOP: College Header */}
         <motion.div
@@ -34,7 +33,7 @@ const Hero = () => {
           />
         </div>
 
-        {/* ✅ BOTTOM (Auto bottom ✅) */}
+        {/* ✅ BOTTOM */}
         <div className="heroBottomArea">
           <div className="heroTexts">
             {/* ✅ Department in ONE LINE */}
@@ -46,6 +45,7 @@ const Hero = () => {
             <h4 className="heroTag">INNOVATE • COMPETE • ELEVATE</h4>
           </div>
 
+          {/* ✅ Button */}
           <motion.button
             onClick={scrollToEvent}
             whileTap={{ scale: 0.95 }}
@@ -55,8 +55,8 @@ const Hero = () => {
             REGISTER NOW
           </motion.button>
 
-          {/* ✅ Bottom divider */}
-          <div className="heroBottomDivider" />
+          {/* ❌ Removed Bottom Divider Bar */}
+          {/* <div className="heroBottomDivider" /> */}
         </div>
       </div>
     </section>
