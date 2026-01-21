@@ -6,8 +6,8 @@ export default function Coordinators() {
     {
       name: "AMSAMANI E",
       role: "Assistant Professor",
-      whatsapp: "https://wa.me/919940194947",
-      call: "tel:+919940194947",
+      whatsapp: "https://wa.me/916374665752",
+      call: "tel:+916374665752",
     },
     {
       name: "PAUL T JABA",
