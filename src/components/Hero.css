@@ -47,7 +47,6 @@
   justify-content: flex-start;
 }
 
-
 /* ✅ TOP header (Alignment removed ✅) */
 .heroHeaderCard {
   width: 100%;
@@ -163,19 +162,25 @@
   color: white;
 }
 
-/* ✅ Department name in ONE LINE ✅ */
+/* ✅ Department name in ONE LINE ✅ (UPDATED PROFESSIONAL FONT ✅) */
 .heroDept {
   font-size: 16px;
-  font-weight: 500;
-  font-family: serif;
-  opacity: 0.95;
+  font-weight: 600;
+
+  /* ✅ Modern + Professional attractive font */
+  font-family: "Inter", "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif;
+
+  opacity: 0.96;
   line-height: 1.4;
+  letter-spacing: 0.4px;
 
   /* ✅ Force in one line */
   white-space: nowrap;
+
+  /* ✅ Premium soft glow */
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
 }
 
-/* ✅ Slogan below department ✅ */
 /* ✅ Slogan below department ✅ (Animated Gradient Text) */
 .heroTag {
   margin-top: 6px;
@@ -209,7 +214,6 @@
   }
 }
 
-
 /* ✅ REGISTER button */
 .heroRegisterBtn {
   margin-top: 16px;
@@ -236,13 +240,8 @@
   box-shadow: 0 0 45px rgba(236, 72, 153, 0.55);
 }
 
-/* ✅ Bottom divider line */
+/* ❌ Bottom divider REMOVED ✅ */
+/* If divider still exists in JSX, it won't show */
 .heroBottomDivider {
-  margin-top: 14px;
-  height: 3px;
-  width: 160px;
-  border-radius: 999px;
-  opacity: 0.85;
-
-  background: linear-gradient(90deg, #22d3ee, #a855f7, #ec4899);
+  display: none !important;
 }
