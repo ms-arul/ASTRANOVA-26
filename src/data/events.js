@@ -12,6 +12,10 @@ export const events = [
     venue: "Conference Hall",
     prizePool: "Up to ₹6,000 + Mouse",
     accentKey: "apex",
+
+    // ✅ Separate Registration Form Link
+    formLink:
+      "https://forms.gle/RXcQsX8VDn6UYQva9",
   },
   {
     id: 2,
@@ -26,6 +30,10 @@ export const events = [
     venue: "Debate Arena",
     prizePool: "Up to ₹1,500 + Spotify Subscription",
     accentKey: "quiz",
+
+    // ✅ Separate Registration Form Link
+    formLink:
+      "https://forms.gle/ssKZtt3fsqXs3ztD9",
   },
   {
     id: 3,
@@ -40,6 +48,10 @@ export const events = [
     venue: "AI Arena",
     prizePool: "Up to ₹1,500 + Mouse",
     accentKey: "prompt",
+
+    // ✅ Separate Registration Form Link
+    formLink:
+      "https://forms.gle/NJzQjGdrL9ZqZbKA6",
   },
   {
     id: 4,
@@ -54,6 +66,10 @@ export const events = [
     venue: "Debug Arena",
     prizePool: "₹1,500 + Power Bank",
     accentKey: "debug",
+
+    // ✅ Separate Registration Form Link
+    formLink:
+      "https://forms.gle/e2mbGBdA2aff3Rdz6",
   },
   {
     id: 5,
@@ -68,5 +84,9 @@ export const events = [
     venue: "UI/UX Arena",
     prizePool: "Figma Subscription + ₹500 + Mouse",
     accentKey: "uxplore",
+
+    // ✅ Separate Registration Form Link
+    formLink:
+      "https://forms.gle/yutKpoHVmFekoe1a8",
   },
 ];
