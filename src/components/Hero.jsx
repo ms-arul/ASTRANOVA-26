@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { motion } from "framer-motion";
 import "./Hero.css";
-import { FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 
 const Hero = () => {
+  const scrollToEvent = useCallback(() => {
+    document
+      .getElementById("event")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
     <section className="heroMobile">
+      {/* ✅ Layout (No backgrounds now) */}
       <div className="heroWrap">
         {/* ✅ TOP: College Header */}
         <motion.div
@@ -28,52 +34,29 @@ const Hero = () => {
           />
         </div>
 
-        {/* ✅ BOTTOM */}
+        {/* ✅ BOTTOM (Auto bottom ✅) */}
         <div className="heroBottomArea">
           <div className="heroTexts">
-            <h3 className="heroDept">
+            {/* ✅ Department in ONE LINE */}
+            <h2 className="heroDept">
               Department of Computer Science & Engineering
-            </h3>
+            </h2>
+
+            {/* ✅ Motion Gradient Slogan */}
             <h4 className="heroTag">INNOVATE • COMPETE • ELEVATE</h4>
-            
           </div>
 
-          {/* ✅ REGISTER NOW BUTTON WITH LINK */}
-          <motion.a
-            href="https://your-form-link-here.com"
-            target="_blank"
-            rel="noreferrer"
+          <motion.button
+            onClick={scrollToEvent}
             whileTap={{ scale: 0.95 }}
             whileHover={{ scale: 1.03 }}
             className="heroRegisterBtn"
           >
             REGISTER NOW
-          </motion.a>
+          </motion.button>
 
-          {/* ✅ ICONS ONLY (NO OUTER CONTAINER ✅) */}
-          <div className="heroIconsOnly">
-            {/* ✅ Google Map */}
-            <a
-              href="https://maps.app.goo.gl/iSWguafnxnFqyt3RA"
-              target="_blank"
-              rel="noreferrer"
-              className="iconNeonBtn"
-              title="Location"
-            >
-              <FaMapMarkerAlt />
-            </a>
-
-            {/* ✅ Instagram */}
-            <a
-              href="https://www.instagram.com/astranova26_.cse?utm_source=qr&igsh=dXoybXRwa3M3Nmw5"
-              target="_blank"
-              rel="noreferrer"
-              className="iconNeonBtn"
-              title="Instagram"
-            >
-              <FaInstagram />
-            </a>
-          </div>
+          {/* ✅ Bottom divider */}
+          <div className="heroBottomDivider" />
         </div>
       </div>
     </section>
