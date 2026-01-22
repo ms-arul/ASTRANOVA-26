@@ -6,8 +6,6 @@
   height: 100dvh;
   width: 100%;
   overflow: hidden;
-
-  /* ✅ Removed black background */
   background: transparent;
 }
 
@@ -18,20 +16,19 @@
   pointer-events: none;
 }
 
-/* ✅ Soft center spotlight (Vignette Removed ✅) */
+/* ✅ Soft center spotlight */
 .heroSpotlight {
   position: absolute;
   inset: 0;
-
-  /* ✅ last black value set to 0 */
   background: radial-gradient(
     circle at center,
-    rgba(34, 211, 238, 0.1) 0%,
+    rgba(34, 211, 238, 0.12) 0%,
+    rgba(168, 85, 247, 0.08) 40%,
     rgba(0, 0, 0, 0) 75%
   );
 }
 
-/* ✅ Main Wrapper (NO extra space now) */
+/* ✅ Main Wrapper */
 .heroWrap {
   position: relative;
   z-index: 10;
@@ -42,20 +39,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* ✅ makes bottom section push down */
   justify-content: flex-start;
 }
 
-/* ✅ TOP header (Alignment removed ✅) */
+/* ✅ TOP header */
 .heroHeaderCard {
   width: 100%;
   max-width: 420px;
-
   padding: 0;
   margin-top: 6px;
 
-  /* ✅ changed from grid to flex */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,10 +66,10 @@
   height: 46px;
   border-radius: 999px;
   overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
 }
 
 .heroHeaderBadge img {
@@ -90,23 +83,29 @@
   padding: 4px;
 }
 
-/* ✅ Header text no forced alignment */
+/* ✅ Header text */
 .heroHeaderText {
   flex: 1;
   text-align: center;
   color: white;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.1));
 }
 
 .heroHeaderText h3 {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 750;
   line-height: 1.2;
+  letter-spacing: 0.3px;
+
+  /* ✅ Better font like screenshot */
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
 }
 
 .heroHeaderText p {
   margin-top: 4px;
   font-size: 11px;
-  opacity: 0.88;
+  opacity: 0.9;
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
 }
 
 .heroHeaderText span {
@@ -114,14 +113,13 @@
   margin-top: 4px;
   font-size: 10px;
   opacity: 0.65;
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
 }
 
-/* ✅ CENTER AREA (fixed space problem) */
+/* ✅ CENTER AREA */
 .heroCenterArea {
   width: 100%;
   max-width: 420px;
-
-  /* ✅ removed flex:1 (this was causing huge empty space) */
   flex: 0;
 
   display: flex;
@@ -129,17 +127,16 @@
   justify-content: center;
   align-items: center;
 
-  padding-top: 0;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 /* ✅ STAR LOGO */
 .heroMainLogo {
   width: min(90%, 330px);
   object-fit: contain;
-  margin-top: 0;
 
-  filter: drop-shadow(0 0 22px rgba(0, 255, 255, 0.3));
+  filter: drop-shadow(0 0 28px rgba(0, 255, 255, 0.35))
+    drop-shadow(0 0 40px rgba(168, 85, 247, 0.12));
 }
 
 /* ✅ BOTTOM AREA */
@@ -162,46 +159,38 @@
   color: white;
 }
 
-/* ✅ Department name in ONE LINE ✅ (UPDATED PROFESSIONAL FONT ✅) */
+/* ✅ Department name */
 .heroDept {
   font-size: 16px;
-  font-weight: 600;
-
-  /* ✅ Modern + Professional attractive font */
-  font-family: "Inter", "Poppins", "Montserrat", "Segoe UI", Arial, sans-serif;
-
+  font-weight: 650;
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
   opacity: 0.96;
   line-height: 1.4;
-  letter-spacing: 0.4px;
-
-  /* ✅ Force in one line */
+  letter-spacing: 0.45px;
   white-space: nowrap;
-
-  /* ✅ Premium soft glow */
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.16);
 }
 
-/* ✅ Slogan below department ✅ (Animated Gradient Text) */
+/* ✅ Slogan below department */
 .heroTag {
   margin-top: 6px;
   font-size: 13px;
   letter-spacing: 0.22em;
-  font-weight: 800;
+  font-weight: 850;
   line-height: 1.8;
 
-  /* ✅ Gradient text */
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
+
   background: linear-gradient(90deg, #22d3ee, #a855f7, #ec4899, #22d3ee);
   background-size: 300% 300%;
-
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* ✅ Motion effect */
   animation: heroGradientMove 3s ease-in-out infinite;
 }
 
-/* ✅ Gradient Motion Keyframes */
+/* ✅ Gradient Motion */
 @keyframes heroGradientMove {
   0% {
     background-position: 0% 50%;
@@ -214,34 +203,193 @@
   }
 }
 
-/* ✅ REGISTER button */
+/* ✅ Small sub text */
+.heroSubText {
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.75;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.12);
+
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
+}
+
+/* ✅ REGISTER button (Screenshot Match ✅) */
 .heroRegisterBtn {
-  margin-top: 16px;
-  width: min(85%, 320px);
-  height: 52px;
+  margin-top: 18px;
+  width: min(85%, 330px);
+  height: 56px;
 
   border: none;
-  outline: none;
   border-radius: 999px;
   cursor: pointer;
 
-  color: white;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  /* ✅ Screenshot font style */
+  font-family: "Montserrat", "Poppins", "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 
-  background: linear-gradient(90deg, #22d3ee, #a855f7, #ec4899);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.55);
+  color: rgba(255, 255, 255, 0.95);
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  /* ✅ Screenshot exact gradient */
+  background: linear-gradient(90deg, #22d3ee 0%, #a855f7 52%, #ec4899 100%);
+
+  /* ✅ Glow like screenshot */
+  box-shadow: 0 0 26px rgba(168, 85, 247, 0.55),
+    0 0 42px rgba(34, 211, 238, 0.25);
+
+  transition: all 0.28s ease;
+  position: relative;
+  overflow: hidden;
+
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
+/* ✅ Premium glossy highlight (top glass layer) */
+.heroRegisterBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.02),
+    transparent
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ✅ LOOP Shine effect (smooth continuous loop) */
+.heroRegisterBtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -120%;
+  width: 75%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.32) 45%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 100%
+  );
+
+  transform: skewX(-22deg);
+  animation: shineLoop 2.2s linear infinite;
+}
+
+@keyframes shineLoop {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* ✅ Hover glow like screenshot */
 .heroRegisterBtn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 45px rgba(236, 72, 153, 0.55);
+  transform: scale(1.045);
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.55),
+    0 0 55px rgba(168, 85, 247, 0.4),
+    0 0 70px rgba(34, 211, 238, 0.22);
 }
 
-/* ❌ Bottom divider REMOVED ✅ */
-/* If divider still exists in JSX, it won't show */
-.heroBottomDivider {
-  display: none !important;
+.heroRegisterBtn:active {
+  transform: scale(0.96);
+}
+
+/* ===================================================== */
+/* ✅ ICONS ONLY SECTION (NO COLORS + NO OUTER CONTAINER) */
+/* ===================================================== */
+
+.heroIconsOnly {
+  margin-top: 16px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ Neon Icon Buttons */
+.iconNeonBtn {
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  transition: all 0.28s ease;
+}
+
+/* ✅ Icon White Glow */
+.iconNeonBtn svg {
+  color: white;
+  font-size: 26px;
+
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55))
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.22));
+
+  transition: 0.28s ease;
+}
+
+/* ✅ Hover stronger neon */
+.iconNeonBtn:hover {
+  transform: translateY(-4px) scale(1.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.iconNeonBtn:hover svg {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 0 28px rgba(255, 255, 255, 0.5));
+}
+
+.iconNeonBtn:active {
+  transform: scale(0.95);
+}
+
+/* ✅ Mobile Responsive */
+@media (max-width: 450px) {
+  .heroDept {
+    font-size: 14px;
+  }
+
+  .heroTag {
+    font-size: 12px;
+  }
+
+  .heroRegisterBtn {
+    height: 52px;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+  }
+
+  .iconNeonBtn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .iconNeonBtn svg {
+    font-size: 23px;
+  }
+
+  .heroIconsOnly {
+    gap: 14px;
+  }
 }
