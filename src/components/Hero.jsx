@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { motion } from "framer-motion";
+import { FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 import "./Hero.css";
 
 const Hero = () => {
@@ -11,7 +12,10 @@ const Hero = () => {
 
   return (
     <section className="heroMobile">
-      {/* ✅ Layout (No backgrounds now) */}
+      {/* ✅ Background Layers */}
+      <div className="heroLayer heroSpotlight" />
+
+      {/* ✅ Layout Wrapper */}
       <div className="heroWrap">
         {/* ✅ TOP: College Header */}
         <motion.div
@@ -20,10 +24,10 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="heroHeaderCard"
         >
-          {/* your header content */}
+          {/* ✅ Add your header content here */}
         </motion.div>
 
-        {/* ✅ CENTER: Logo */}
+        {/* ✅ CENTER: Main Logo */}
         <div className="heroCenterArea">
           <motion.img
             src="/logo1.png"
@@ -34,18 +38,17 @@ const Hero = () => {
           />
         </div>
 
-        {/* ✅ BOTTOM (Auto bottom ✅) */}
+        {/* ✅ BOTTOM */}
         <div className="heroBottomArea">
           <div className="heroTexts">
-            {/* ✅ Department in ONE LINE */}
             <h2 className="heroDept">
               Department of Computer Science & Engineering
             </h2>
 
-            {/* ✅ Motion Gradient Slogan */}
             <h4 className="heroTag">INNOVATE • COMPETE • ELEVATE</h4>
           </div>
 
+          {/* ✅ REGISTER BUTTON */}
           <motion.button
             onClick={scrollToEvent}
             whileTap={{ scale: 0.95 }}
@@ -55,7 +58,36 @@ const Hero = () => {
             REGISTER NOW
           </motion.button>
 
-          {/* ✅ Bottom divider */}
+          {/* ✅ ICONS BELOW REGISTER */}
+          <div className="heroIconsOnly">
+            {/* ✅ Instagram Link */}
+            <motion.a
+              href="https://www.instagram.com/astranova26_.cse?utm_source=qr&igsh=dXoybXRwa3M3Nmw5" // ✅ UPDATE YOUR INSTAGRAM LINK HERE
+              target="_blank"
+              rel="noreferrer"
+              className="iconNeonBtn instaIcon"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </motion.a>
+
+            {/* ✅ Map Link */}
+            <motion.a
+              href="https://maps.app.goo.gl/iSWguafnxnFqyt3RA" // ✅ UPDATE YOUR MAP LINK HERE
+              target="_blank"
+              rel="noreferrer"
+              className="iconNeonBtn mapIcon"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              aria-label="Location"
+            >
+              <FaMapMarkerAlt />
+            </motion.a>
+          </div>
+
+          {/* ✅ Bottom Divider */}
           <div className="heroBottomDivider" />
         </div>
       </div>
