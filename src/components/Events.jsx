@@ -2,7 +2,7 @@
 
 import { events } from "../data/events";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 /* ✅ STATIC GRADIENT MAP (Tailwind safe ✅) */
 const GRADIENTS = {
@@ -11,8 +11,6 @@ const GRADIENTS = {
   prompt: "from-teal-400 via-sky-500 to-indigo-600",
   debug: "from-amber-400 via-orange-500 to-red-600",
   uxplore: "from-pink-500 via-rose-500 to-red-600",
-
-  // fallback
   default: "from-cyan-500 via-sky-500 to-blue-600",
 };
 
@@ -143,6 +141,9 @@ export default function Events() {
   const carouselRef = useRef(null);
   const autoScrollRef = useRef(null);
 
+  // ✅ NEW: Auto-scroll pause controller
+  const pausedRef = useRef(false);
+
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -152,6 +153,23 @@ export default function Events() {
 
   const typingSpeed = isMobile ? 10 : 22;
 
+  /* ✅ NEW: BODY SCROLL LOCK WHEN MODAL OPEN */
+  useEffect(() => {
+    if (selectedEvent) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+
+    return () => (document.body.style.overflow = "auto");
+  }, [selectedEvent]);
+
+  /* ✅ NEW: ESC KEY CLOSE MODAL */
+  useEffect(() => {
+    const escClose = (e) => {
+      if (e.key === "Escape") setSelectedEvent(null);
+    };
+    window.addEventListener("keydown", escClose);
+    return () => window.removeEventListener("keydown", escClose);
+  }, []);
+
   /* ✅ AUTO SCROLL MOBILE ONLY (FORWARD ✅ then REVERSE ✅) */
   useEffect(() => {
     if (!carouselRef.current || window.innerWidth >= 768) return;
@@ -160,20 +178,19 @@ export default function Events() {
     const totalCards = events.length;
 
     let currentIndex = 0;
-    let direction = 1; // ✅ 1 = forward, -1 = reverse
+    let direction = 1;
 
     autoScrollRef.current = setInterval(() => {
+      // ✅ NEW: pause on hover/touch
+      if (pausedRef.current) return;
+
+      // ✅ NEW: stop auto-scroll when modal opens
+      if (selectedEvent) return;
+
       currentIndex += direction;
 
-      // ✅ If reached end → reverse
-      if (currentIndex >= totalCards - 1) {
-        direction = -1;
-      }
-
-      // ✅ If reached start → forward
-      if (currentIndex <= 0) {
-        direction = 1;
-      }
+      if (currentIndex >= totalCards - 1) direction = -1;
+      if (currentIndex <= 0) direction = 1;
 
       container.scrollTo({
         left: container.offsetWidth * currentIndex,
@@ -182,12 +199,16 @@ export default function Events() {
     }, 3500);
 
     return () => clearInterval(autoScrollRef.current);
-  }, []);
+  }, [selectedEvent]);
 
-  const handleRegister = () => {
+  // ✅ NEW: pause/resume functions
+  const pauseAutoScroll = () => (pausedRef.current = true);
+  const resumeAutoScroll = () => (pausedRef.current = false);
+
+  const handleRegister = useCallback(() => {
     const link = selectedEvent?.formLink || DEFAULT_FORM_LINK;
     window.open(link, "_blank", "noopener,noreferrer");
-  };
+  }, [selectedEvent]);
 
   const modalAccent =
     selectedEvent?.accentKey && GRADIENTS[selectedEvent.accentKey]
@@ -204,11 +225,18 @@ export default function Events() {
         COMPETITIONS
       </h2>
 
-      {/* CARDS */}
+      {/* ✅ CARDS */}
       <div
         ref={carouselRef}
+        // ✅ NEW: pause on hover/touch and resume
+        onMouseEnter={pauseAutoScroll}
+        onMouseLeave={resumeAutoScroll}
+        onTouchStart={pauseAutoScroll}
+        onTouchEnd={resumeAutoScroll}
         className="flex md:grid md:grid-cols-2 gap-10 max-w-6xl mx-auto
-                   overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6"
+                   overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6
+                   scroll-smooth scrollbar-none"
+        style={{ WebkitOverflowScrolling: "touch" }}
       >
         {events.map((e) => (
           <EventCard
@@ -274,14 +302,12 @@ export default function Events() {
 
               {/* ✅ VENUE LEFT + REGISTER BUTTON RIGHT ✅ */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
-                {/* Venue */}
                 <p className="text-center sm:text-left">
                   <span className="text-xs uppercase opacity-70">Venue</span>
                   <br />
                   <span className="font-semibold">{selectedEvent.venue}</span>
                 </p>
 
-                {/* Register Button (Right Side) */}
                 <button
                   onClick={handleRegister}
                   className={`px-7 py-2.5 rounded-full bg-gradient-to-r ${modalAccent}
