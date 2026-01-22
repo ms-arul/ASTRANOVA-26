@@ -54,7 +54,7 @@ const Hero = () => {
           <div className="heroIconsOnly">
             {/* ✅ Google Map */}
             <a
-              href="https://maps.google.com"
+              href="https://maps.app.goo.gl/iSWguafnxnFqyt3RA"
               target="_blank"
               rel="noreferrer"
               className="iconNeonBtn"
@@ -65,7 +65,7 @@ const Hero = () => {
 
             {/* ✅ Instagram */}
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/astranova26_.cse?utm_source=qr&igsh=dXoybXRwa3M3Nmw5"
               target="_blank"
               rel="noreferrer"
               className="iconNeonBtn"
