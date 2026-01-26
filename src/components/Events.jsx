@@ -1,8 +1,8 @@
-// src/pages/Events.jsx ✅ FULL ONE FILE ✅ Forward + Reverse Auto Scroll ✅
+// src/pages/Events.jsx ✅ FULL ONE FILE ✅ Mobile Optimized ✅ Forward + Reverse Auto Scroll ✅
 
 import { events } from "../data/events";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 /* ✅ STATIC GRADIENT MAP (Tailwind safe ✅) */
 const GRADIENTS = {
@@ -17,6 +17,9 @@ const GRADIENTS = {
 /* ✅ Default Form Link */
 const DEFAULT_FORM_LINK =
   "https://docs.google.com/forms/d/e/1FAIpQLScuR2BqnLjH7kLRGz1cP36EfhaGISXcr6oNseHGFWhhuk4jYQ/viewform";
+
+/* ✅ Default Joining Fee */
+const DEFAULT_JOINING_FEE = "₹100";
 
 /* ✅ Typing text */
 function TypingTextOnView({ text = "", className = "", start = false, speed }) {
@@ -58,8 +61,9 @@ function TypingTextOnView({ text = "", className = "", start = false, speed }) {
 }
 
 /* ✅ Event Card */
-function EventCard({ e, onOpen, typingSpeed }) {
+function EventCard({ e, onOpen, typingSpeed, isMobile }) {
   const accent = GRADIENTS[e.accentKey] || GRADIENTS.default;
+  const fee = e.joiningFeePerHead || DEFAULT_JOINING_FEE;
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.55 });
@@ -67,17 +71,28 @@ function EventCard({ e, onOpen, typingSpeed }) {
   return (
     <motion.div
       ref={ref}
-      whileHover={{ scale: 1.04 }}
-      className="snap-center min-w-[90%] md:min-w-0 relative rounded-2xl overflow-hidden
+      whileHover={!isMobile ? { scale: 1.04 } : undefined}
+      whileTap={isMobile ? { scale: 0.98 } : undefined}
+      className="snap-center min-w-[88%] sm:min-w-[70%] md:min-w-0 relative rounded-2xl overflow-hidden
                  flex flex-col sm:flex-row border border-white/20
-                 shadow-[0_0_40px_rgba(0,255,255,0.15)] min-h-[300px]"
+                 shadow-[0_0_35px_rgba(0,255,255,0.12)] min-h-[300px]"
     >
-      {/* ✅ GLOW */}
+      {/* ✅ GLOW (lighter on mobile for performance) */}
       <motion.div
-        animate={{ opacity: [0.25, 0.55, 0.25] }}
-        transition={{ repeat: Infinity, duration: 2 }}
+        animate={{ opacity: [0.18, 0.42, 0.18] }}
+        transition={{ repeat: Infinity, duration: isMobile ? 2.8 : 2 }}
         className={`absolute -inset-1 bg-gradient-to-r ${accent} blur-2xl`}
       />
+
+      {/* ✅ Joining Fee Badge */}
+      <div className="absolute top-4 right-4 z-20">
+        <span
+          className="px-3 py-1 rounded-full text-[11px] font-bold tracking-wider
+                     bg-black/55 border border-white/15 text-white backdrop-blur-md"
+        >
+          Fee: {fee}/Head
+        </span>
+      </div>
 
       {/* LEFT */}
       <div className="relative z-10 p-6 w-full sm:w-[60%] flex flex-col justify-center text-center">
@@ -98,21 +113,21 @@ function EventCard({ e, onOpen, typingSpeed }) {
           text={e.desc}
           start={inView}
           speed={typingSpeed}
-          className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed min-h-[90px]"
+          className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed min-h-[80px]"
         />
 
         <button
           onClick={() => onOpen(e)}
           className={`mt-6 px-6 py-2.5 rounded-full
                       bg-gradient-to-r ${accent}
-                      text-white font-semibold hover:scale-110 transition`}
+                      text-white font-semibold active:scale-95 hover:scale-110 transition`}
         >
           View Details →
         </button>
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="relative w-full sm:w-[40%] h-[150px] sm:h-auto">
+      <div className="relative w-full sm:w-[40%] h-[160px] sm:h-auto">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${e.bg})` }}
@@ -140,8 +155,6 @@ export default function Events() {
 
   const carouselRef = useRef(null);
   const autoScrollRef = useRef(null);
-
-  // ✅ NEW: Auto-scroll pause controller
   const pausedRef = useRef(false);
 
   useEffect(() => {
@@ -153,7 +166,7 @@ export default function Events() {
 
   const typingSpeed = isMobile ? 10 : 22;
 
-  /* ✅ NEW: BODY SCROLL LOCK WHEN MODAL OPEN */
+  /* ✅ BODY SCROLL LOCK WHEN MODAL OPEN */
   useEffect(() => {
     if (selectedEvent) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "auto";
@@ -161,7 +174,7 @@ export default function Events() {
     return () => (document.body.style.overflow = "auto");
   }, [selectedEvent]);
 
-  /* ✅ NEW: ESC KEY CLOSE MODAL */
+  /* ✅ ESC KEY CLOSE MODAL */
   useEffect(() => {
     const escClose = (e) => {
       if (e.key === "Escape") setSelectedEvent(null);
@@ -170,9 +183,18 @@ export default function Events() {
     return () => window.removeEventListener("keydown", escClose);
   }, []);
 
-  /* ✅ AUTO SCROLL MOBILE ONLY (FORWARD ✅ then REVERSE ✅) */
+  // ✅ Get ONE CARD WIDTH correctly (mobile fix)
+  const getCardWidth = useCallback(() => {
+    const container = carouselRef.current;
+    if (!container) return 0;
+    const firstCard = container.querySelector("[data-card='event']");
+    if (!firstCard) return container.offsetWidth;
+    return firstCard.getBoundingClientRect().width + 40; // include gap
+  }, []);
+
+  /* ✅ AUTO SCROLL MOBILE ONLY (Forward + Reverse) */
   useEffect(() => {
-    if (!carouselRef.current || window.innerWidth >= 768) return;
+    if (!carouselRef.current || !isMobile) return;
 
     const container = carouselRef.current;
     const totalCards = events.length;
@@ -181,10 +203,7 @@ export default function Events() {
     let direction = 1;
 
     autoScrollRef.current = setInterval(() => {
-      // ✅ NEW: pause on hover/touch
       if (pausedRef.current) return;
-
-      // ✅ NEW: stop auto-scroll when modal opens
       if (selectedEvent) return;
 
       currentIndex += direction;
@@ -192,16 +211,17 @@ export default function Events() {
       if (currentIndex >= totalCards - 1) direction = -1;
       if (currentIndex <= 0) direction = 1;
 
+      const cardWidth = getCardWidth();
+
       container.scrollTo({
-        left: container.offsetWidth * currentIndex,
+        left: cardWidth * currentIndex,
         behavior: "smooth",
       });
-    }, 3500);
+    }, 3300);
 
     return () => clearInterval(autoScrollRef.current);
-  }, [selectedEvent]);
+  }, [selectedEvent, isMobile, getCardWidth]);
 
-  // ✅ NEW: pause/resume functions
   const pauseAutoScroll = () => (pausedRef.current = true);
   const resumeAutoScroll = () => (pausedRef.current = false);
 
@@ -215,8 +235,10 @@ export default function Events() {
       ? GRADIENTS[selectedEvent.accentKey]
       : GRADIENTS.default;
 
+  const joiningFee = selectedEvent?.joiningFeePerHead || DEFAULT_JOINING_FEE;
+
   return (
-    <section id="event" className="min-h-screen py-24 px-4">
+    <section id="event" className="min-h-screen py-20 sm:py-24 px-3 sm:px-4">
       <h2
         className="text-center mt-6 mb-10 text-4xl sm:text-5xl font-extrabold tracking-widest
              bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500
@@ -228,23 +250,28 @@ export default function Events() {
       {/* ✅ CARDS */}
       <div
         ref={carouselRef}
-        // ✅ NEW: pause on hover/touch and resume
         onMouseEnter={pauseAutoScroll}
         onMouseLeave={resumeAutoScroll}
         onTouchStart={pauseAutoScroll}
         onTouchEnd={resumeAutoScroll}
         className="flex md:grid md:grid-cols-2 gap-10 max-w-6xl mx-auto
                    overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6
-                   scroll-smooth scrollbar-none"
-        style={{ WebkitOverflowScrolling: "touch" }}
+                   scroll-smooth scrollbar-none px-2"
+        style={{
+          WebkitOverflowScrolling: "touch",
+          scrollPaddingLeft: "10px",
+          scrollPaddingRight: "10px",
+        }}
       >
         {events.map((e) => (
-          <EventCard
-            key={e.id}
-            e={e}
-            onOpen={setSelectedEvent}
-            typingSpeed={typingSpeed}
-          />
+          <div key={e.id} data-card="event" className="min-w-[88%] md:min-w-0">
+            <EventCard
+              e={e}
+              onOpen={setSelectedEvent}
+              typingSpeed={typingSpeed}
+              isMobile={isMobile}
+            />
+          </div>
         ))}
       </div>
 
@@ -256,21 +283,21 @@ export default function Events() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedEvent(null)}
-            className="fixed inset-0 z-50 bg-black/80 flex items-end justify-center px-4 pt-16 pb-6"
+            className="fixed inset-0 z-50 bg-black/80 flex items-end justify-center px-3 pt-12 pb-5"
           >
             <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              initial={{ y: 40, scale: 0.98 }}
+              animate={{ y: 0, scale: 1 }}
+              exit={{ y: 40, scale: 0.98 }}
               onClick={(e) => e.stopPropagation()}
               className="bg-black/70 backdrop-blur-xl p-4 sm:p-6 rounded-2xl
-           max-w-[89vw] sm:max-w-2xl w-full
-           border border-white/20 text-white relative
-           max-h-[80vh] overflow-y-auto"
+                         max-w-[92vw] sm:max-w-2xl w-full
+                         border border-white/20 text-white relative
+                         max-h-[82vh] overflow-y-auto"
             >
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full
+                className="absolute top-3 right-3 w-10 h-10 rounded-full
                            bg-white/10 hover:bg-white/20 transition flex items-center justify-center"
               >
                 ✕
@@ -280,16 +307,20 @@ export default function Events() {
                 {selectedEvent.title}
               </h3>
 
-              <div className="flex justify-center mb-4">
+              <div className="flex flex-wrap justify-center gap-2 mb-4">
                 <span
                   className={`px-4 py-1.5 rounded-full text-xs uppercase font-semibold
                               bg-gradient-to-r ${modalAccent} text-white`}
                 >
                   {selectedEvent.category}
                 </span>
+
+                <span className="px-4 py-1.5 rounded-full text-xs uppercase font-bold bg-white/10 border border-white/10 text-white">
+                  Joining Fee: {joiningFee}/Head
+                </span>
               </div>
 
-              <p className="text-center text-white/80 mb-6">
+              <p className="text-center text-white/80 mb-6 text-sm sm:text-base">
                 {selectedEvent.desc}
               </p>
 
@@ -300,22 +331,27 @@ export default function Events() {
                 <Detail label="Prize" value={selectedEvent.prizePool} />
               </div>
 
-              {/* ✅ VENUE LEFT + REGISTER BUTTON RIGHT ✅ */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
+              {/* ✅ Venue + Register */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-2">
                 <p className="text-center sm:text-left">
                   <span className="text-xs uppercase opacity-70">Venue</span>
                   <br />
                   <span className="font-semibold">{selectedEvent.venue}</span>
                 </p>
+              </div>
 
+              {/* ✅ Sticky Register Button for Mobile */}
+              <div className="sticky bottom-0 left-0 right-0 pt-3 pb-1 bg-black/65 backdrop-blur-xl rounded-xl">
                 <button
                   onClick={handleRegister}
-                  className={`px-7 py-2.5 rounded-full bg-gradient-to-r ${modalAccent}
+                  className={`w-full px-7 py-3 rounded-full bg-gradient-to-r ${modalAccent}
                               text-white font-extrabold tracking-widest
-                              hover:scale-[1.06] transition whitespace-nowrap`}
+                              active:scale-[0.98] transition whitespace-nowrap`}
                 >
                   Register Now →
                 </button>
+
+               
               </div>
             </motion.div>
           </motion.div>
