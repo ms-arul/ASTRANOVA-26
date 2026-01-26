@@ -13,9 +13,11 @@ export const events = [
     prizePool: "Up to ₹6,000 + Mouse",
     accentKey: "apex",
 
+    // ✅ Joining Fee (per head)
+    joiningFeePerHead: "₹100",
+
     // ✅ Separate Registration Form Link
-    formLink:
-      "https://forms.gle/RXcQsX8VDn6UYQva9",
+    formLink: "https://forms.gle/RXcQsX8VDn6UYQva9",
   },
   {
     id: 2,
@@ -31,9 +33,11 @@ export const events = [
     prizePool: "Up to ₹1,500 + Spotify Subscription",
     accentKey: "quiz",
 
+    // ✅ Joining Fee (per head)
+    joiningFeePerHead: "₹100",
+
     // ✅ Separate Registration Form Link
-    formLink:
-      "https://forms.gle/ssKZtt3fsqXs3ztD9",
+    formLink: "https://forms.gle/ssKZtt3fsqXs3ztD9",
   },
   {
     id: 3,
@@ -49,9 +53,11 @@ export const events = [
     prizePool: "Up to ₹1,500 + Mouse",
     accentKey: "prompt",
 
+    // ✅ Joining Fee (per head)
+    joiningFeePerHead: "₹100",
+
     // ✅ Separate Registration Form Link
-    formLink:
-      "https://forms.gle/NJzQjGdrL9ZqZbKA6",
+    formLink: "https://forms.gle/NJzQjGdrL9ZqZbKA6",
   },
   {
     id: 4,
@@ -67,9 +73,11 @@ export const events = [
     prizePool: "₹1,500 + Power Bank",
     accentKey: "debug",
 
+    // ✅ Joining Fee (per head)
+    joiningFeePerHead: "₹100",
+
     // ✅ Separate Registration Form Link
-    formLink:
-      "https://forms.gle/e2mbGBdA2aff3Rdz6",
+    formLink: "https://forms.gle/e2mbGBdA2aff3Rdz6",
   },
   {
     id: 5,
@@ -85,8 +93,10 @@ export const events = [
     prizePool: "Figma Subscription + ₹500 + Mouse",
     accentKey: "uxplore",
 
+    // ✅ Joining Fee (per head)
+    joiningFeePerHead: "₹100",
+
     // ✅ Separate Registration Form Link
-    formLink:
-      "https://forms.gle/yutKpoHVmFekoe1a8",
+    formLink: "https://forms.gle/yutKpoHVmFekoe1a8",
   },
 ];
