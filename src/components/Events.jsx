@@ -84,15 +84,7 @@ function EventCard({ e, onOpen, typingSpeed, isMobile }) {
         className={`absolute -inset-1 bg-gradient-to-r ${accent} blur-2xl`}
       />
 
-      {/* ✅ Joining Fee Badge */}
-      <div className="absolute top-4 right-4 z-20">
-        <span
-          className="px-3 py-1 rounded-full text-[11px] font-bold tracking-wider
-                     bg-black/55 border border-white/15 text-white backdrop-blur-md"
-        >
-          Fee: {fee}/Head
-        </span>
-      </div>
+     
 
       {/* LEFT */}
       <div className="relative z-10 p-6 w-full sm:w-[60%] flex flex-col justify-center text-center">
