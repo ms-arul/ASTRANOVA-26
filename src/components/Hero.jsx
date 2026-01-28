@@ -42,7 +42,7 @@ const Hero = () => {
         <div className="heroBottomArea">
           <div className="heroTexts">
             <h2 className="heroDept">
-              Department of Computer Science & Engineering
+              Department of Computer Science and Engineering
             </h2>
 
             <h4 className="heroTag">INNOVATE • COMPETE • ELEVATE</h4>
