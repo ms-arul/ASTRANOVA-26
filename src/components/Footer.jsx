@@ -79,7 +79,7 @@ export default function Footer() {
           Arulprakash S
         </a>{" "}
         <span className="text-gray-600">
-          (3rd Year B.E – CSE)
+         
         </span>
       </p>
 
