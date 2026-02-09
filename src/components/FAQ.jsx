@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "Can I participate in multiple events?",
-    a: "No. Each participant/team can participate in only one event at a time.",
+    a: "yes. Each participant/team can participate in many event.",
   },
   {
     q: "Is this event open to students from other colleges?",
