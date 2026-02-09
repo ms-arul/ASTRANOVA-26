@@ -14,10 +14,10 @@ export const events = [
     accentKey: "apex",
 
     // ✅ Joining Fee (per head)
-    joiningFeePerHead: "₹100",
+    joiningFeePerHead: "Closed",
 
     // ✅ Separate Registration Form Link
-    formLink: "https://forms.gle/RXcQsX8VDn6UYQva9",
+   
   },
   {
     id: 2,
