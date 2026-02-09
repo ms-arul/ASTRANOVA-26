@@ -16,7 +16,7 @@ const GRADIENTS = {
 
 /* ✅ Default Form Link */
 const DEFAULT_FORM_LINK =
-  "https://docs.google.com/forms/d/e/1FAIpQLScuR2BqnLjH7kLRGz1cP36EfhaGISXcr6oNseHGFWhhuk4jYQ/viewform";
+  "";
 
 /* ✅ Default Joining Fee */
 const DEFAULT_JOINING_FEE = "₹100";
