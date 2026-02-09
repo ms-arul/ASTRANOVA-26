@@ -10,7 +10,7 @@ export const events = [
     time: "10:00 AM - 01:00 PM",
     teamSize: "1 - 4",
     venue: "Conference Hall",
-    prizePool: "Up to ₹6,000 + Mouse",
+    prizePool: "Up to ₹5,000",
     accentKey: "apex",
 
     // ✅ Joining Fee (per head)
@@ -30,7 +30,7 @@ export const events = [
     time: "10:00 AM - 01:00 PM",
     teamSize: "1 - 2",
     venue: "Debate Arena",
-    prizePool: "Up to ₹1,500 + Spotify Subscription",
+    prizePool: "Up to ₹1,500 Subscription",
     accentKey: "quiz",
 
     // ✅ Joining Fee (per head)
@@ -50,7 +50,7 @@ export const events = [
     time: "10:00 AM - 01:00 PM",
     teamSize: "1 - 2",
     venue: "AI Arena",
-    prizePool: "Up to ₹1,500 + Mouse",
+    prizePool: "Up to ₹1,500",
     accentKey: "prompt",
 
     // ✅ Joining Fee (per head)
@@ -70,7 +70,7 @@ export const events = [
     time: "10:00 AM - 01:00 PM",
     teamSize: "1 - 2",
     venue: "Debug Arena",
-    prizePool: "₹1,500 + Power Bank",
+    prizePool: "₹1,500",
     accentKey: "debug",
 
     // ✅ Joining Fee (per head)
@@ -90,7 +90,7 @@ export const events = [
     time: "10:00 AM - 01:00 PM",
     teamSize: "1 - 3",
     venue: "UI/UX Arena",
-    prizePool: "Figma Subscription + ₹500 + Mouse",
+    prizePool: "₹1500",
     accentKey: "uxplore",
 
     // ✅ Joining Fee (per head)
