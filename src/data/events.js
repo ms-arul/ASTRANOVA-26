@@ -37,7 +37,7 @@ export const events = [
     joiningFeePerHead: "₹100",
 
     // ✅ Separate Registration Form Link
-    formLink: "https://forms.gle/ssKZtt3fsqXs3ztD9",
+    formLink: "",
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ export const events = [
     joiningFeePerHead: "₹100",
 
     // ✅ Separate Registration Form Link
-    formLink: "https://forms.gle/NJzQjGdrL9ZqZbKA6",
+    formLink: "",
   },
   {
     id: 4,
@@ -77,7 +77,7 @@ export const events = [
     joiningFeePerHead: "₹100",
 
     // ✅ Separate Registration Form Link
-    formLink: "https://forms.gle/e2mbGBdA2aff3Rdz6",
+    formLink: "",
   },
   {
     id: 5,
@@ -97,6 +97,6 @@ export const events = [
     joiningFeePerHead: "₹100",
 
     // ✅ Separate Registration Form Link
-    formLink: "https://forms.gle/yutKpoHVmFekoe1a8",
+    formLink: "",
   },
 ];
